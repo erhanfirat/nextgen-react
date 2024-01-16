@@ -4,7 +4,7 @@ import PageBody from "./PageBody";
 
 const Main = () => {
   return (
-    <div className="layout">
+    <div className="layout flex flex-col min-h-screen">
       <Header />
       <PageBody />
       <Footer />

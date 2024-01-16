@@ -10,7 +10,7 @@ import ContactPage from "../pages/ContactPage";
 
 const PageBody = () => {
   return (
-    <div className="page-body container pb-5">
+    <div className="page-body container pb-5 grow">
       <Switch>
         <Route path="/" exact>
           <AnaSayfa />
