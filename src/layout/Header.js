@@ -10,7 +10,7 @@ const Header = ({ userName }) => {
   };
 
   return (
-    <nav className="navbar navbar-expand-sm py-3" data-bs-theme="dark">
+    <nav className={theme==='light'? "dark-mode navbar navbar-expand-sm py-3":"navbar navbar-expand-sm py-3"} data-bs-theme="dark">
       <div className="container">
         <a className="navbar-brand pe-5 pt-3" href="#">
           <img src={mandarinIcon} className="logo-icon" />

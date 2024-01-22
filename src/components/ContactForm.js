@@ -15,6 +15,7 @@ export const ContactFrom = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isValid },
   } = useForm({
     defaultValues: formDataInitial,
@@ -22,8 +23,17 @@ export const ContactFrom = () => {
   });
 
   const onFormSubmit = (formData) => {
-    console.log("form submitted: ", formData);
-
+    
+    
+    axios.post("https://reqres.in/api/users",formData).then(res=>{
+     return console.log("form submitted: ", res);
+     
+    }).catch(err=>{
+      return console.warn(err)
+    })
+    localStorage.setItem('name-lastname',formData.name)
+    
+    reset()
     // form datasını backend'e göndermek için axios.post()
     // axios.post();
   };
@@ -48,7 +58,7 @@ export const ContactFrom = () => {
                   message: "Lütfen sayı ve özel karakter kullanmayın.",
                 },
                 validate: (name) => {
-                  if (name.includes("ali")) {
+                  if (name.includes("Ali")) {
                     return true;
                   }
                   return "Ama sen Ali değilsin!";
@@ -128,7 +138,7 @@ export const ContactFrom = () => {
               type="submit"
               color="primary"
               className="px-5"
-              // disabled={!isValid}
+              disabled={!isValid}
             >
               Gönder
             </Button>

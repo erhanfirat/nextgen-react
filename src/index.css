@@ -192,3 +192,7 @@ h1.page-title {
 .form-hata-mesaji {
   color: red;
 }
+nav.dark-mode{
+  background-color: black;
+  color: white;
+}
