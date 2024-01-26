@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-import ProductCard2 from "../components/ProductCard2";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProductsAction } from "../store/actions/productActions";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
@@ -11,6 +8,7 @@ const limit = 20;
 const ProductPage = () => {
   const [filterText, setFilterText] = useState("");
   const [list, setList] = useState([]); // ekranda listelenecek product arrayi
+  const [pages, setPages] = useState([0]);
   const [page, setPage] = useState(3);
   const limit = 20;
 
@@ -35,6 +33,10 @@ const ProductPage = () => {
   }, [products]);
 
   console.log("products > ", products);
+
+  useEffect(() => {
+    setPages(Array.from(Array(parseInt(total / limit)).keys()));
+  }, [total]);
 
   useEffect(() => {
     console.log("filterText: ", filterText);
@@ -64,12 +66,32 @@ const ProductPage = () => {
           onChange={(e) => setFilterText(e.target.value)}
         />
       </div>
+      <div>
+        <select
+          value={page}
+          onChange={(e) => setPage(parseInt(e.target.value))}
+        >
+          {pages.map((p) => (
+            <option value={p}>{p + 1}</option>
+          ))}
+        </select>
+      </div>
       <div className="products-container gap-3">
         {productsLoading && <h1>LOADING..........</h1>}
         {!productsLoading &&
           products?.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
+      </div>
+      <div>
+        <select
+          value={page}
+          onChange={(e) => setPage(parseInt(e.target.value))}
+        >
+          {pages.map((p) => (
+            <option value={p}>{p + 1}</option>
+          ))}
+        </select>
       </div>
     </div>
   );
