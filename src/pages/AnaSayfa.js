@@ -3,6 +3,7 @@ import { useInput } from "../hooks/useInput";
 import reactJSPng from "./../assets/react-js.png";
 import { GlobalActions } from "../store/reducers/globalReducer";
 import { setTitleActionCreator } from "../store/actions/globalActions";
+import { Motivation } from "../components/Motivation";
 
 const AnaSayfa = ({ color = "black" }) => {
   const [titleInput, titleInputChange] = useInput(
@@ -19,6 +20,7 @@ const AnaSayfa = ({ color = "black" }) => {
 
   return (
     <div className="page">
+      <Motivation />
       <h1 className="page-title">
         <i className="fa-solid fa-house fa-xs me-2"></i>
         Ana Sayfa
