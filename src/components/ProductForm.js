@@ -17,9 +17,28 @@ const ProductForm = ({ productData }) => {
 
   const history = useHistory();
 
+  const upsertProduct = (productFormData) => {
+    if (productFormData.id) {
+      return axios
+        .put(
+          "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products/" +
+            productFormData.id,
+          productFormData
+        )
+        .then((res) => res.data);
+    } else {
+      return axios
+        .post(
+          "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products",
+          productFormData
+        )
+        .then((res) => res.data);
+    }
+  };
+
   const mutation = useMutation({
-    mutationFn: createProduct,
-    onSuccess: () => {
+    mutationFn: upsertProduct,
+    onSuccess: (res) => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ["products"] });
       history.push("/products");

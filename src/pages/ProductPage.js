@@ -1,18 +1,26 @@
 import { useEffect, useState } from "react";
 import ProductCard2 from "../components/ProductCard2";
-import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsAction } from "../store/actions/productActions";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const ProductPage = () => {
-  const products = useSelector((store) => store.product.list);
-  const productsLoading = useSelector((store) => store.product.loading);
-  const dispatch = useDispatch();
   const [filterText, setFilterText] = useState("");
   const [list, setList] = useState([]); // ekranda listelenecek product arrayi
 
-  useEffect(() => {
-    dispatch(fetchProductsAction());
-  }, []);
+  const fetchProducts = () =>
+    axios
+      .get("https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products")
+      .then((res) => res.data);
+
+  const {
+    isPending: productsLoading,
+    error,
+    data: products = [],
+  } = useQuery({
+    queryKey: ["products"],
+    queryFn: () => fetchProducts(),
+  });
 
   console.log("products > ", products);
 
