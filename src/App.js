@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Main from "./layout/Main";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Providers } from "./context/Providers";
 
 function App() {
   useEffect(() => {
@@ -14,10 +15,10 @@ function App() {
   }, []);
 
   return (
-    <>
+    <Providers>
       <Main />
       <ToastContainer position="bottom-center" />
-    </>
+    </Providers>
   );
 }
 

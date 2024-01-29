@@ -1,9 +1,13 @@
 import { Link, NavLink } from "react-router-dom";
 import mandarinIcon from "./../assets/mandarin.png";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { myContext } from "../App";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
-const Header = ({ userName }) => {
+const Header = () => {
   const [theme, setTheme] = useLocalStorage("theme", "light");
+  const { userName } = useContext(UserContext);
 
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");

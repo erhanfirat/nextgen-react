@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProductCard2 from "../components/ProductCard2";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsAction } from "../store/actions/productActions";
+import { ProductContext } from "../context/ProductContext";
 
 const ProductPage = () => {
-  const products = useSelector((store) => store.product.list);
+  const { products } = useContext(ProductContext);
+  
+  // const products = useSelector((store) => store.product.list);
   const productsLoading = useSelector((store) => store.product.loading);
   const dispatch = useDispatch();
   const [filterText, setFilterText] = useState("");

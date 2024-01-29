@@ -17,8 +17,8 @@ const Main = () => {
 
   return (
     <div className="layout">
-      <Header userName={userName} />
-      <PageBody setUserName={changeUserName} />
+      <Header  />
+      <PageBody />
       <Footer />
     </div>
   );

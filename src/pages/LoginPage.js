@@ -1,13 +1,15 @@
+import { myContext } from "../App";
 import LoginForm from "../components/LoginForm";
+import { Title } from "../components/Title";
 
-const LoginPage = ({ setUserName }) => {
+const LoginPage = () => {
   return (
     <div className="page">
-      <h1 className="page-title">
+      <Title>
         <i className="fa-solid fa-user fa-xs me-2"></i>
         Kullanıcı Girişi
-      </h1>
-      <LoginForm setUserName={setUserName} />
+      </Title>
+      <LoginForm />
     </div>
   );
 };

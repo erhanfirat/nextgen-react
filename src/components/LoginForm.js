@@ -1,9 +1,11 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { Button } from "reactstrap";
 import { useForm } from "react-hook-form";
+import { UserContext } from "../context/UserContext";
 
-const LoginForm = ({ setUserName }) => {
+const LoginForm = () => {
+  const { setUserName } = useContext(UserContext);
+
   const { register, handleSubmit } = useForm({
     defaultValues: {
       userName: localStorage.getItem("userName") || "",
